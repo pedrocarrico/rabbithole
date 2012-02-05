@@ -1,8 +1,8 @@
 require 'bunny'
 
 class MessagesController < ApplicationController
-  # GET /messages
-  # GET /messages.json
+  before_filter :authenticate_user!
+
   def index
     @message = Message.new
     @messages = Message.all
@@ -13,8 +13,6 @@ class MessagesController < ApplicationController
     end
   end
 
-  # GET /messages/1
-  # GET /messages/1.json
   def show
     @message = Message.find(params[:id])
 
@@ -24,8 +22,6 @@ class MessagesController < ApplicationController
     end
   end
 
-  # GET /messages/new
-  # GET /messages/new.json
   def new
     @message = Message.new
 
@@ -35,7 +31,6 @@ class MessagesController < ApplicationController
     end
   end
 
-  # GET /messages/1/edit
   def edit
     @message = Message.find(params[:id])
   end
@@ -54,8 +49,6 @@ class MessagesController < ApplicationController
     end
   end
 
-
-  # POST /messages
   def create
     @message = Message.new(params[:message])
 
@@ -68,8 +61,6 @@ class MessagesController < ApplicationController
     end
   end
 
-  # PUT /messages/1
-  # PUT /messages/1.json
   def update
     @message = Message.find(params[:id])
 

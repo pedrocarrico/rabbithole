@@ -4,6 +4,7 @@ gem 'rails', '3.2.1'
 gem 'execjs'
 gem 'therubyracer'
 gem 'bunny'
+gem 'devise'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -43,6 +44,6 @@ group :development, :test do
   gem 'ruby-debug19', :require => 'ruby-debug'
   gem 'simplecov', :require => false
   gem 'simplecov-rcov'
-  gem 'test-unit', '2.3.0'
+  gem 'test-unit', '~>2.2.0'
 end
 

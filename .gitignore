@@ -13,6 +13,6 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
-/.idea    
 /*.ids
-/coverage 
+/coverage
+/.idea

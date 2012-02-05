@@ -1,8 +1,12 @@
 Rabbithole::Application.routes.draw do
 
-  root :to => 'messages#index'
+  devise_for :users
+
+  root :to => 'home#index'
 
   #resources :messages
+
+  get    "/home(.:format)",                       :to => "home#index",                       :as => :home
 
   get    "/messages(.:format)",                   :to => "messages#index",                   :as => :messages
   post   "/messages(.:format)",                   :to => "messages#create",                  :as => :messages_create
@@ -12,7 +16,6 @@ Rabbithole::Application.routes.draw do
   put    "/messages/:id(.:format)",               :to => "messages#update",                  :as => :update_message
   delete "/messages/:id(.:format)",               :to => "messages#destroy",                 :as => :destroy_message
   post   "/messages/publish(.:format)",           :to => "messages#publish",                 :as => :messages_publish
-
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

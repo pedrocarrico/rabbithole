@@ -1,0 +1,5 @@
+rvm: 1.9.2
+script: "rake test"
+notifications:
+    email:
+        - pedro.carrico@gmail.com
