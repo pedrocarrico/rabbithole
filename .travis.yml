@@ -3,5 +3,5 @@ rvm:
   - 1.9.2
 script: "bundle exec rake test"
 notifications:
-    email:
-        - pedro.carrico@gmail.com
+  email:
+    - pedro.carrico@gmail.com
