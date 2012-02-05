@@ -1,2 +1,0 @@
-== Rabbit Hole
-Rails example application using devise for authentication and bunny for handling AMQP connections to RabbitMQ 
