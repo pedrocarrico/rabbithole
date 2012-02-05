@@ -5,3 +5,12 @@
 require File.expand_path('../config/application', __FILE__)
 
 Rabbithole::Application.load_tasks
+
+namespace :test do
+  desc "Run tests with coverage enabled"
+  task :coverage do
+    ENV['COVERAGE'] = 'on'
+    FileUtils.rm_r 'coverage', :force => true
+    Rake::Task["test"].invoke
+  end
+end

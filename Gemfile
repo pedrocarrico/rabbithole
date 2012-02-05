@@ -41,5 +41,8 @@ gem 'jquery-rails'
 
 group :development, :test do
   gem 'ruby-debug19', :require => 'ruby-debug'
+  gem 'simplecov', :require => false
+  gem 'simplecov-rcov'
+  gem 'test-unit', '2.3.0'
 end
 
