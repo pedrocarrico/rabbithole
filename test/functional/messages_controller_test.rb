@@ -1,56 +1,62 @@
 require 'test_helper'
 
 class MessagesControllerTest < ActionController::TestCase
-  setup do
-    @message = messages(:one)
-  end
-
   test "should get index" do
-    sign_in :user, users(:user)
+    sign_in :user, Factory(:user)
     get :index
     assert_response :success
     assert_not_nil assigns(:messages)
   end
 
   test "should get new" do
-    sign_in :user, users(:user)
+    sign_in :user, Factory(:user)
     get :new
     assert_response :success
   end
 
   test "should create message" do
-    sign_in :user, users(:user)
+    message = {'from' => 'test',
+               'to'   => 'test',
+               'body' => 'this is a test body'
+              }
+    sign_in :user, Factory(:user)
     assert_difference('Message.count') do
-      post :create, message: @message.attributes
+      post :create, message: message
     end
 
     assert_redirected_to messages_path
   end
 
   test "should show message" do
-    sign_in :user, users(:user)
-    get :show, id: @message
+    message = Factory(:message)
+    sign_in :user, Factory(:user)
+    get :show, id: message
     assert_response :success
   end
 
   test "should get edit" do
-    sign_in :user, users(:user)
-    get :edit, id: @message
+    message = Factory(:message)
+    sign_in :user, Factory(:user)
+    get :edit, id: message
     assert_response :success
   end
 
   test "should update message" do
-    sign_in :user, users(:user)
-    put :update, id: @message, message: @message.attributes
-    assert_redirected_to message_path(assigns(:message))
+    message = Factory(:message)
+    modified_attributes = {'body' => 'this is modified test body'}
+    sign_in :user, Factory(:user)
+    put :update, id: message, message: modified_attributes
+    message = assigns(:message)
+    assert_redirected_to message_path(message)
+    assert_equal modified_attributes['body'], message.body, "Message body should be #{modified_attributes['body']}"
   end
 
   test "should destroy message" do
-    sign_in :user, users(:user)
+    message = Factory(:message)
+    sign_in :user, Factory(:user)
     assert_difference('Message.count', -1) do
-      delete :destroy, id: @message
+      delete :destroy, id: message
     end
-
     assert_redirected_to messages_path
   end
 end

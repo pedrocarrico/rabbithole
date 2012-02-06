@@ -45,5 +45,6 @@ group :development, :test do
   gem 'simplecov', :require => false
   gem 'simplecov-rcov'
   gem 'test-unit', '~>2.2.0'
+  gem 'factory_girl_rails'
 end
 
