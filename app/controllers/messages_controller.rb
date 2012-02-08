@@ -1,5 +1,3 @@
-require 'bunny'
-
 class MessagesController < ApplicationController
   before_filter :authenticate_user!
 
@@ -38,11 +36,7 @@ class MessagesController < ApplicationController
   def publish
     logger.debug "Publishing message #{params[:message]}"
 
-    bunny = Bunny.new
-    bunny.start
-    exchange = bunny.exchange "rabbithole"
-    exchange.publish "#{params[:message].to_json}", :key => "message"
-    bunny.stop
+    Message.publish params[:message]
 
     respond_to do |format|
       format.html { redirect_to messages_path, notice: 'Message was successfully published.' }
@@ -78,7 +72,7 @@ class MessagesController < ApplicationController
     @message.destroy
 
     respond_to do |format|
-      format.html { redirect_to messages_url }
+      format.html { redirect_to messages_path }
     end
   end
 end

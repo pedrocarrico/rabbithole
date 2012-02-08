@@ -5,6 +5,7 @@ gem 'execjs'
 gem 'therubyracer'
 gem 'bunny'
 gem 'devise'
+gem 'mocha'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

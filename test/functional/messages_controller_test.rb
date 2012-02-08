@@ -34,6 +34,15 @@ class MessagesControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "should publish message" do
+    Message.expects(:publish).returns(true)
+
+    message = Factory(:message)
+    sign_in :user, Factory(:user)
+    post :publish, message: message.attributes
+    assert_redirected_to messages_path
+  end
+
   test "should get edit" do
     message = Factory(:message)
     sign_in :user, Factory(:user)
