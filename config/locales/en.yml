@@ -3,3 +3,14 @@
 
 en:
   hello: "Hello world"
+  activerecord:
+    models:
+      message: "Message"
+      attributes:
+        message:
+          body: "Body"
+          from: "From"
+          to:   "to"
+      errors:
+        message:
+          body_too_long: "Message body is too long, it must be equal or less than 160 characters"

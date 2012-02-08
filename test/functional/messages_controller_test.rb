@@ -25,6 +25,21 @@ class MessagesControllerTest < ActionController::TestCase
     end
 
     assert_redirected_to messages_path
+    assert_equal "Message was successfully created.", flash[:notice]
+  end
+
+  test "should not create message when it's over 160 chars'" do
+    message = {'from' => 'test',
+               'to'   => 'test',
+               'body' => 'This is a test body with over one hundred and sixty characters.This is a test body with over one hundred and sixty characters.This is a test body with over one hundred and sixty characters.'
+              }
+    sign_in :user, Factory(:user)
+
+    assert_no_difference('Message.count') do
+      post :create, message: message
+    end
+
+    assert_redirected_to messages_path
   end
 
   test "should show message" do

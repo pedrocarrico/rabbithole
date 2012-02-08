@@ -42,7 +42,9 @@ gem 'jquery-rails'
 # To use debugger
 
 group :development, :test do
-  gem 'ruby-debug19', :require => 'ruby-debug'
+  gem 'ruby-debug19'
+  gem 'ruby-debug-base19x'
+  gem 'ruby-debug-ide'
   gem 'simplecov', :require => false
   gem 'simplecov-rcov'
   gem 'test-unit', '~>2.2.0'
