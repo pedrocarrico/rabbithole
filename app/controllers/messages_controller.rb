@@ -3,7 +3,10 @@ class MessagesController < ApplicationController
 
   def index
     @message = Message.new
-    @messages = Message.all
+    @messages = Message.find_all_by_from_user_id current_user.id
+
+    @users = {}
+    User.all.collect { |user| @users[user.email] = user.id }
 
     respond_to do |format|
       format.html # index.html.erb
@@ -12,7 +15,7 @@ class MessagesController < ApplicationController
   end
 
   def show
-    @message = Message.find(params[:id])
+    @message = Message.where(:from_user_id => current_user.id).find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -23,6 +26,9 @@ class MessagesController < ApplicationController
   def new
     @message = Message.new
 
+    @users = {}
+    User.all.collect { |user| @users[user.email] = user.id }
+
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @message }
@@ -30,7 +36,9 @@ class MessagesController < ApplicationController
   end
 
   def edit
-    @message = Message.find(params[:id])
+    @users = {}
+    User.all.collect { |user| @users[user.email] = user.id }
+    @message = Message.where(:from_user_id => current_user.id).find(params[:id])
   end
 
   def publish
@@ -68,7 +76,7 @@ class MessagesController < ApplicationController
   end
 
   def destroy
-    @message = Message.find(params[:id])
+    @message = Message.where(:from_user_id => current_user.id).find(params[:id])
     @message.destroy
 
     respond_to do |format|

@@ -13,11 +13,12 @@
 
   <div class="field">
     <%= f.label :from %><br />
-    <%= f.text_field :from %>
+    <%= f.text_field :from , :value => current_user.email, :disabled => :true %>
+    <%= f.hidden_field :from_user_id, :value => current_user.id %>
   </div>
   <div class="field">
     <%= f.label :to %><br />
-    <%= f.text_field :to %>
+    <%= f.select :to_user_id, options_for_select(@users),{:include_blank => '---'}%><br />
   </div>
   <div class="field">
     <%= f.label :body %><br />
